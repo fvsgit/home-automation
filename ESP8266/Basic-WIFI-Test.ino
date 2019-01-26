@@ -4,8 +4,8 @@
  
 #include <ESP8266WiFi.h>
  
-const char* ssid     = "FVSHOME";
-const char* password = "Chivas300!WIFI";
+const char* ssid     = "SSID";
+const char* password = "PASSWORD";
  
 const char* host = "wifitest.adafruit.com";
  
