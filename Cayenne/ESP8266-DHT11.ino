@@ -12,9 +12,9 @@ char ssid[] = "FVSHOME";
 char wifiPassword[] = "Chivas300!WIFI";
 
 // Cayenne authentication info. This should be obtained from the Cayenne Dashboard.
-char username[] = "6981bca0-0a24-11e7-84f5-c72f51175089";
-char password[] = "2c0dc8306d3d3ba4255cea035121b2e988c49da9";
-char clientID[] = "7ed69d40-21a7-11e9-a254-e163efaadfe8";
+char username[] = "xxx";
+char password[] = "xxx";
+char clientID[] = "xxx";
 
 DHT_Unified dht(DHTPIN, DHTTYPE);
 uint32_t delayMS;
