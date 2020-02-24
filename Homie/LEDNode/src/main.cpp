@@ -1,31 +1,39 @@
- 
 #include <Homie.h>
+#include <DHT.h>
+#include <DHT_U.h>
 
-#define firmwareVersion "1.0.0"
-const int PIN_RELAY = 5;
+const int TEMPERATURE_INTERVAL = 30;
+unsigned long lastTemperatureSent = 0;
 
-HomieNode lightNode("light", "Light", "switch");
+//Define the Pin
+#define DHTPIN     14         // Pin connected to the DHT sensor.
 
-bool lightOnHandler(const HomieRange& range, const String& value) {
-  if (value != "true" && value != "false") return false;
+// Uncomment the type of sensor in use:
+#define DHTTYPE    DHT11     // DHT 11
+//#define DHTTYPE    DHT22     // DHT 22 (AM2302)
+//#define DHTTYPE    DHT21     // DHT 21 (AM2301)
 
-  bool on = (value == "true");
-  digitalWrite(PIN_RELAY, on ? HIGH : LOW);
-  lightNode.setProperty("on").send(value);
-  Homie.getLogger() << "Light is " << (on ? "on" : "off") << endl;
+HomieNode temperatureNode("temperature", "Temperature", "temperature");
+DHT_Unified dht(DHTPIN, DHTTYPE);
 
-  return true;
+void loopHandler() {
+  if (millis() - lastTemperatureSent >= TEMPERATURE_INTERVAL * 1000UL || lastTemperatureSent == 0) {
+    float temperature = 22; // Fake temperature here, for the example
+    Homie.getLogger() << "Temperature: " << temperature << " °C" << endl;
+    temperatureNode.setProperty("degrees").send(String(temperature));
+    lastTemperatureSent = millis();
+  }
 }
 
 void setup() {
   Serial.begin(115200);
   Serial << endl << endl;
-  pinMode(PIN_RELAY, OUTPUT);
-  digitalWrite(PIN_RELAY, LOW);
+  Homie_setFirmware("awesome-temperature", "1.0.0");
+  Homie.setLoopFunction(loopHandler);
 
-  Homie_setFirmware("awesome-relay", firmwareVersion);
-
-  lightNode.advertise("on").setName("On").setDatatype("boolean").settable(lightOnHandler);
+  temperatureNode.advertise("degrees").setName("Degrees")
+                                      .setDatatype("float")
+                                      .setUnit("ºC");
 
   Homie.setup();
 }
