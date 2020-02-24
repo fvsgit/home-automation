@@ -8,8 +8,8 @@
 #define DHTTYPE    DHT11     // DHT 11
 
 // WiFi network info.
-char ssid[] = "FVSHOME";
-char wifiPassword[] = "Chivas300!WIFI";
+char ssid[] = "xyz";
+char wifiPassword[] = "xyz";
 
 // Cayenne authentication info. This should be obtained from the Cayenne Dashboard.
 char username[] = "xxx";
