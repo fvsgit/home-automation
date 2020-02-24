@@ -1,6 +1,6 @@
 # LEDNode - ESP8266 Homie v3.0.0 Node
 
-This project is a very basic implementation to get started with Homie ESP8266. What makes Homie great is the fact that it standardizes the MQTT messages that the IoT device sends and receives. This has the benefit that platforms like OpenHAB can auto discover your custom IoT devices and knows exactly how to interact with them.
+This project is a very basic implementation to get started with [Homie ESP8266](https://github.com/homieiot/homie-esp8266). What makes Homie great is the fact that it standardizes the MQTT messages that the IoT device sends and receives. This has the benefit that platforms like OpenHAB can auto discover your custom IoT devices and knows exactly how to interact with them.
 
 Some other great benefits of using Homie are:
 - Reduces the amount of boilerplate code you have to write like managing WIFI connections, MQTT connections, timers, etc.
@@ -12,7 +12,7 @@ Some other great benefits of using Homie are:
 
 There are various documentation online to explain this process, but there are a few pitfalls along the way. This document tries to simply the explanation of the steps needed to get started with Homie on the ESP8266. At the end the links to the official documentation will also be given.
 
-One of the biggest issues was to connect to the generated access point created by homie. The AP was correctly created and I could connect to it, but the Configuration UI was missing. Once I figured this out (looking at the serial terminal of the device and inspecting the error message) I knew where to start my google search. Loading the UI turned uot to be more of a challenge than I expected...
+One of the biggest issues was to connect to the generated access point created by homie. The AP was correctly created and I could connect to it, but the Configuration UI was missing. Once I figured this out (looking at the serial terminal of the device and inspecting the error message) I knew where to start my google search. Loading the UI turned out to be more of a challenge than I expected...
 
 ### Step 1 - Upload the Configuration UI
 This is done by uploading the `ui_bundle.gz` file to the SPIFFS of the device.
@@ -23,7 +23,7 @@ Start by creating the data folder on the `root` level of the project. It should 
 
 ### Step 2 - Upload to the SPIFFS
 
-Now that the configuration UI file is in the `data/homie` directory, it is time to write it to the file system of the device. In PlatformIO this is done by running the task: `platformio ru n --target uploadfs`from the terminal. You can also use the command panel in the IDE:
+Now that the configuration UI file is in the `data/homie` directory, it is time to write it to the file system of the device. In PlatformIO this is done by running the task: `platformio run --target uploadfs`from the terminal. You can also use the command panel in the IDE:
 
 ```shell
 Ctrl+p
